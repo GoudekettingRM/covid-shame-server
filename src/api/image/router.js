@@ -51,12 +51,6 @@ router.post('/', auth, async (req, res, next) => {
       public_id: nameWithoutExt,
       unique_filename: false,
     });
-    console.log('imageData', {
-      authorId: parseInt(req.body.authorId),
-      location: req.body.location,
-      imageUrl: imageData.url,
-      cloudinaryId: nameWithoutExt,
-    });
     const image = await imageQuery.insert({
       authorId: parseInt(req.body.authorId),
       location: req.body.location,

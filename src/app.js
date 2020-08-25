@@ -17,11 +17,8 @@ app.use(cors());
 app.use(express.json());
 app.use(formData.parse());
 
-app.get('/', (req, res) => {
-  res.json({
-    message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄',
-  });
-});
+// if we host on Heroku or something similar, we will have to enable the line below to make sure that express-slow-down works.
+// app.enable("trust proxy"); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS if you use an ELB, custom Nginx setup, etc)
 
 app.use('/api/v1', api);
 
