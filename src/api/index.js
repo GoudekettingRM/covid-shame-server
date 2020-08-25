@@ -2,8 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
-const mainRateLimiter = require('./utils/rateLimitConfig');
-const mainSpeedLimiter = require('./utils/slowDownConfig');
+const mainRateLimiter = require('../utils/rateLimitConfig');
+const mainSpeedLimiter = require('../utils/slowDownConfig');
 
 router.use(mainRateLimiter);
 router.use(mainSpeedLimiter);
