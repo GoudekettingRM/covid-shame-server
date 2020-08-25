@@ -5,14 +5,14 @@ const { toJWT } = require('../auth/jwt');
 
 const router = Router();
 
-router.get('/', async (req, res, next) => {
-  try {
-    const users = await User.findAll();
-    return res.json(users);
-  } catch (error) {
-    return next(error);
-  }
-});
+// router.get('/', async (req, res, next) => {
+//   try {
+//     const users = await User.findAll();
+//     return res.json(users);
+//   } catch (error) {
+//     return next(error);
+//   }
+// });
 
 router.post('/', async (req, res, next) => {
   try {
