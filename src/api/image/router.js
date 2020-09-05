@@ -2,6 +2,7 @@ const { Router } = require('express');
 const cloudinary = require('cloudinary');
 const imageQuery = require('./queries');
 const { auth } = require('../auth/authMiddleware');
+const { limitOffset, nextPrevUrls } = require('../../utils/pagination');
 
 const router = Router();
 
@@ -13,10 +14,32 @@ cloudinary.config({
 
 router.get('/', async (req, res, next) => {
   try {
-    const images = await imageQuery.findAll();
+    const { sort, page = 1 } = req.query;
+    const { limit, offset } = limitOffset(parseInt(page));
+
+    const allImages = await imageQuery.findAll({
+      sort,
+      limit,
+      offset,
+    });
+
+    const { nextPage, prevPage, numberOfPages } = nextPrevUrls(
+      req,
+      allImages.count,
+      limit,
+      page,
+      ['page'],
+    );
+
     return res.json({
       message: "Here's all the images",
-      images,
+      info: {
+        totalImages: allImages.count,
+        pages: numberOfPages,
+        nextPage,
+        prevPage,
+      },
+      images: allImages.rows,
     });
   } catch (error) {
     return next(error);

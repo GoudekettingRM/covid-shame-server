@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize');
 const db = require('../../db');
 const Image = require('../image/model');
 const User = require('../user/model');
