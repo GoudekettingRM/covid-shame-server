@@ -1,5 +1,5 @@
 const limitOffset = (page) => {
-  const limit = 1;
+  const limit = 20;
   const offset = (page - 1) * limit;
 
   return {
